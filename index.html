@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SolArc — Перетворіть сонце на вашу незалежність</title>
+    <meta name="description" content="SolArc — встановлення сонячних панелей під ключ для будинків та бізнесу. 500+ систем, 12 років досвіду, монтаж за 1–3 дні.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: #0D1F2D;
+            color: #F5F0E8;
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; line-height: 1.2; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; }
+
+        /* ===== KEYFRAMES ===== */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-22px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(32px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50%       { opacity: 1; }
+        }
+        @keyframes borderReveal {
+            from { transform: scaleX(0); }
+            to   { transform: scaleX(1); }
+        }
+
+        /* ===== NAV ===== */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 5%; height: 72px;
+            background: rgba(13, 31, 45, 0.82);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(232, 160, 32, 0.1);
+            animation: fadeDown 0.55s ease both;
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px;
+            font-family: 'DM Serif Display', serif; font-size: 1.5rem;
+        }
+        .sun-icon { width: 34px; height: 34px; }
+        .sun-rays { transform-origin: 18px 18px; animation: rotate 20s linear infinite; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            font-size: 0.88rem; font-weight: 500; letter-spacing: 0.02em;
+            color: rgba(245, 240, 232, 0.72); transition: color 0.25s;
+        }
+        .nav-links a:hover { color: #E8A020; }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.65rem 1.5rem; border-radius: 7px; border: none; cursor: pointer;
+            font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600;
+            letter-spacing: 0.02em; transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+        }
+        .btn-amber { background: #E8A020; color: #0D1F2D; }
+        .btn-amber:hover {
+            background: #f5b535; transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(232, 160, 32, 0.38);
+        }
+        .btn-outline {
+            background: transparent; color: #F5F0E8;
+            border: 1.5px solid rgba(245, 240, 232, 0.36);
+        }
+        .btn-outline:hover { border-color: #E8A020; color: #E8A020; transform: translateY(-2px); }
+        .btn-teal { background: #2BB5A0; color: #0D1F2D; }
+        .btn-teal:hover {
+            background: #34ccb7; transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(43, 181, 160, 0.35);
+        }
+        .btn-lg { padding: 0.9rem 2.2rem; font-size: 1rem; }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            position: relative; overflow: hidden; padding: 120px 5% 80px;
+        }
+        .hero-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(232,160,32,0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(232,160,32,0.045) 1px, transparent 1px);
+            background-size: 52px 52px;
+            mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 0%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 0%, transparent 100%);
+        }
+        .hero-glow {
+            position: absolute; width: 700px; height: 700px;
+            top: 45%; left: 28%; transform: translate(-50%, -50%);
+            background: radial-gradient(ellipse, rgba(232,160,32,0.11) 0%, transparent 68%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            position: relative; z-index: 2;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 4rem; align-items: center;
+            max-width: 1200px; margin: 0 auto; width: 100%;
+        }
+        .hero-content { display: flex; flex-direction: column; gap: 1.6rem; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.4rem 1rem; border-radius: 50px;
+            background: rgba(232,160,32,0.1); border: 1px solid rgba(232,160,32,0.28);
+            font-size: 0.79rem; font-weight: 600; color: #E8A020;
+            width: fit-content; letter-spacing: 0.04em;
+            animation: fadeUp 0.6s ease 0.15s both;
+        }
+        .hero-badge-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: #E8A020; animation: pulse 2s ease infinite;
+        }
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            animation: fadeUp 0.6s ease 0.35s both;
+        }
+        .hero h1 em { font-style: italic; color: #E8A020; }
+        .hero-sub {
+            font-size: 1.05rem; color: rgba(245,240,232,0.68);
+            max-width: 470px; line-height: 1.75;
+            animation: fadeUp 0.6s ease 0.55s both;
+        }
+        .hero-buttons {
+            display: flex; gap: 1rem; flex-wrap: wrap;
+            animation: fadeUp 0.6s ease 0.75s both;
+        }
+        .hero-illus {
+            display: flex; justify-content: center; align-items: center;
+            animation: fadeUp 0.8s ease 0.5s both;
+        }
+        .hero-svg { width: 100%; max-width: 480px; height: auto; }
+
+        /* ===== STATS ===== */
+        .stats {
+            background: rgba(232,160,32,0.06);
+            border-top: 1px solid rgba(232,160,32,0.18);
+            border-bottom: 1px solid rgba(232,160,32,0.18);
+            padding: 2rem 5%;
+        }
+        .stats-inner {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            max-width: 1200px; margin: 0 auto; text-align: center;
+        }
+        .stat-item {
+            padding: 1.2rem;
+            border-right: 1px solid rgba(245,240,232,0.09);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-num {
+            font-family: 'DM Serif Display', serif; font-size: 2.4rem;
+            color: #E8A020; line-height: 1;
+        }
+        .stat-lbl {
+            font-size: 0.82rem; color: rgba(245,240,232,0.55);
+            margin-top: 0.35rem; font-weight: 500;
+        }
+
+        /* ===== SECTION BASE ===== */
+        .section { padding: 96px 5%; }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .section-label {
+            display: inline-block; font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            color: #E8A020; margin-bottom: 0.7rem;
+        }
+        .section-title {
+            font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+            color: #F5F0E8; margin-bottom: 0.9rem;
+        }
+        .section-sub {
+            font-size: 1rem; color: rgba(245,240,232,0.58);
+            max-width: 520px; line-height: 1.75; margin-bottom: 3.5rem;
+        }
+
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem;
+        }
+        .svc-card {
+            background: rgba(255,255,255,0.028);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px; padding: 2rem; position: relative; overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        .svc-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #E8A020, #2BB5A0);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .svc-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 44px rgba(0,0,0,0.32);
+            border-color: rgba(232,160,32,0.22);
+        }
+        .svc-card:hover::before { transform: scaleX(1); }
+        .svc-icon {
+            width: 50px; height: 50px; border-radius: 11px;
+            background: rgba(232,160,32,0.1);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; margin-bottom: 1.2rem;
+        }
+        .svc-card h3 { font-size: 1.08rem; color: #F5F0E8; margin-bottom: 0.55rem; }
+        .svc-card p { font-size: 0.86rem; color: rgba(245,240,232,0.52); line-height: 1.65; }
+        .svc-tag {
+            display: inline-block; margin-top: 1rem;
+            padding: 0.22rem 0.7rem;
+            background: rgba(43,181,160,0.1); border: 1px solid rgba(43,181,160,0.24);
+            border-radius: 4px; font-size: 0.73rem; font-weight: 700;
+            color: #2BB5A0; letter-spacing: 0.04em;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .how {
+            background: rgba(255,255,255,0.012);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .steps-wrap {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            position: relative;
+        }
+        .step {
+            padding: 2rem 1.8rem 2.5rem; text-align: center; position: relative;
+        }
+        .step:not(:last-child)::after {
+            content: '→'; position: absolute;
+            right: -0.6rem; top: 4.2rem;
+            font-size: 1.6rem; color: rgba(232,160,32,0.38); z-index: 1;
+        }
+        .step-num {
+            font-family: 'DM Serif Display', serif; font-size: 5.5rem;
+            color: rgba(232,160,32,0.07); line-height: 1;
+            position: absolute; top: 0.5rem; left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none; user-select: none; white-space: nowrap;
+        }
+        .step-ico {
+            width: 64px; height: 64px; border-radius: 50%;
+            background: rgba(232,160,32,0.09);
+            border: 1px solid rgba(232,160,32,0.22);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; margin: 4rem auto 1.3rem;
+            position: relative; z-index: 1;
+        }
+        .step h3 { font-size: 1rem; color: #F5F0E8; margin-bottom: 0.45rem; position: relative; z-index: 1; }
+        .step p { font-size: 0.82rem; color: rgba(245,240,232,0.5); line-height: 1.6; position: relative; z-index: 1; }
+
+        /* ===== WHY US ===== */
+        .why-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+        }
+        .benefits { display: flex; flex-direction: column; gap: 1.1rem; }
+        .ben-card {
+            background: rgba(255,255,255,0.028);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-left: 3px solid #E8A020;
+            border-radius: 0 12px 12px 0; padding: 1.4rem 1.6rem;
+            display: flex; gap: 1rem; align-items: flex-start;
+            transition: transform 0.22s, border-left-color 0.22s;
+        }
+        .ben-card:hover { transform: translateX(5px); border-left-color: #2BB5A0; }
+        .ben-ico { font-size: 1.55rem; flex-shrink: 0; margin-top: 0.05rem; }
+        .ben-card h4 { font-size: 0.98rem; color: #F5F0E8; margin-bottom: 0.28rem; }
+        .ben-card p { font-size: 0.82rem; color: rgba(245,240,232,0.52); line-height: 1.55; }
+        .chart-box {
+            background: rgba(255,255,255,0.028);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px; padding: 2rem;
+        }
+        .chart-hd { font-size: 1rem; font-weight: 600; color: #F5F0E8; margin-bottom: 0.2rem; }
+        .chart-sd { font-size: 0.76rem; color: rgba(245,240,232,0.42); margin-bottom: 1.2rem; }
+        .chart-legend { display: flex; gap: 1.5rem; margin-bottom: 1rem; }
+        .leg { display: flex; align-items: center; gap: 0.4rem; font-size: 0.76rem; color: rgba(245,240,232,0.58); }
+        .leg-dot { width: 10px; height: 10px; border-radius: 2px; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testi-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem;
+        }
+        .testi-card {
+            background: rgba(255,255,255,0.028);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 14px; padding: 2rem;
+            display: flex; flex-direction: column; gap: 1rem;
+            transition: transform 0.28s, border-color 0.28s;
+        }
+        .testi-card:hover { transform: translateY(-4px); border-color: rgba(232,160,32,0.2); }
+        .stars { color: #E8A020; font-size: 1rem; letter-spacing: 0.08em; }
+        .testi-quote {
+            font-size: 0.93rem; color: rgba(245,240,232,0.78);
+            line-height: 1.72; flex: 1;
+        }
+        .testi-quote::before {
+            content: '"'; font-family: 'DM Serif Display', serif;
+            font-size: 2rem; color: #E8A020; line-height: 0;
+            vertical-align: -0.5rem; margin-right: 0.15rem;
+        }
+        .testi-author { display: flex; align-items: center; gap: 0.8rem; }
+        .avatar {
+            width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+            background: linear-gradient(135deg, #E8A020 0%, #2BB5A0 100%);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'DM Serif Display', serif; font-size: 0.88rem;
+            font-weight: bold; color: #0D1F2D;
+        }
+        .author-name { font-size: 0.9rem; font-weight: 600; color: #F5F0E8; }
+        .author-city { font-size: 0.76rem; color: rgba(245,240,232,0.42); }
+
+        /* ===== CTA ===== */
+        .cta-sec {
+            background: linear-gradient(135deg,
+                rgba(232,160,32,0.07) 0%,
+                rgba(43,181,160,0.04) 100%);
+            border-top: 1px solid rgba(232,160,32,0.14);
+            border-bottom: 1px solid rgba(43,181,160,0.14);
+            text-align: center;
+        }
+        .cta-sec .section-title { max-width: 600px; margin: 0 auto 0.9rem; }
+        .cta-sec .section-sub { max-width: 460px; margin: 0 auto 2.5rem; }
+        .cta-form {
+            display: flex; gap: 0.75rem; max-width: 440px;
+            margin: 0 auto; justify-content: center; flex-wrap: wrap;
+        }
+        .phone-inp {
+            flex: 1; min-width: 210px;
+            padding: 0.88rem 1.2rem;
+            background: rgba(255,255,255,0.055);
+            border: 1.5px solid rgba(255,255,255,0.11);
+            border-radius: 8px; color: #F5F0E8;
+            font-family: 'DM Sans', sans-serif; font-size: 0.94rem;
+            outline: none; transition: border-color 0.28s, background 0.28s;
+        }
+        .phone-inp::placeholder { color: rgba(245,240,232,0.33); }
+        .phone-inp:focus { border-color: #E8A020; }
+        .phone-inp.ok { border-color: #2BB5A0; background: rgba(43,181,160,0.07); }
+        .success-msg {
+            display: none; margin-top: 1.1rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(43,181,160,0.1); border: 1px solid rgba(43,181,160,0.3);
+            border-radius: 8px; color: #2BB5A0; font-size: 0.9rem; font-weight: 500;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 2.5rem 5%;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .footer-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            gap: 1.5rem; flex-wrap: wrap;
+        }
+        .footer-logo {
+            display: flex; align-items: center; gap: 8px;
+            font-family: 'DM Serif Display', serif; font-size: 1.2rem;
+        }
+        .footer-links { display: flex; gap: 1.6rem; flex-wrap: wrap; }
+        .footer-links a { font-size: 0.84rem; color: rgba(245,240,232,0.48); transition: color 0.25s; }
+        .footer-links a:hover { color: #E8A020; }
+        .footer-copy {
+            width: 100%; text-align: center;
+            font-size: 0.76rem; color: rgba(245,240,232,0.27);
+            padding-top: 1.2rem; margin-top: 0.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .hero { padding: 96px 5% 56px; }
+            .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-illus { display: none; }
+            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .stat-item:nth-child(2) { border-right: none; }
+            .stat-item:nth-child(3) { border-right: 1px solid rgba(245,240,232,0.09); border-top: 1px solid rgba(245,240,232,0.07); }
+            .stat-item:last-child { border-top: 1px solid rgba(245,240,232,0.07); }
+            .services-grid { grid-template-columns: 1fr; }
+            .steps-wrap { grid-template-columns: 1fr; }
+            .step:not(:last-child)::after { content: '↓'; right: 50%; top: auto; bottom: -1rem; transform: translateX(50%); }
+            .why-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .testi-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-links { justify-content: center; }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-wrap { grid-template-columns: repeat(2, 1fr); }
+            .step:nth-child(2):not(:last-child)::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="main-nav">
+    <a href="#" class="nav-logo">
+        <svg class="sun-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="8" fill="#E8A020"/>
+            <g class="sun-rays">
+                <rect x="16.5" y="1.5" width="3" height="6.5" rx="1.5" fill="#E8A020"/>
+                <rect x="16.5" y="28" width="3" height="6.5" rx="1.5" fill="#E8A020"/>
+                <rect x="1.5" y="16.5" width="6.5" height="3" rx="1.5" fill="#E8A020"/>
+                <rect x="28" y="16.5" width="6.5" height="3" rx="1.5" fill="#E8A020"/>
+                <rect x="5.1" y="5.7" width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(-45 5.1 5.7)"/>
+                <rect x="27.1" y="23.8" width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(-45 27.1 23.8)"/>
+                <rect x="25.4" y="4.3" width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(45 25.4 4.3)"/>
+                <rect x="7.3" y="25.8" width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(45 7.3 25.8)"/>
+            </g>
+        </svg>
+        SolArc
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="#services">Послуги</a></li>
+        <li><a href="#how">Як це працює</a></li>
+        <li><a href="#why">Чому ми</a></li>
+        <li><a href="#testimonials">Відгуки</a></li>
+    </ul>
+
+    <a href="#cta" class="btn btn-amber nav-cta">Безкоштовна консультація</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-inner">
+        <div class="hero-content">
+            <span class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Сертифікований монтажник · Офіційний дилер
+            </span>
+
+            <h1>Перетворіть <em>сонце</em><br>на вашу незалежність</h1>
+
+            <p class="hero-sub">Встановлюємо сонячні панелі «під ключ» для будинків і бізнесу. Мовчазна електростанція на вашому даху — для тих, хто обрав свободу.</p>
+
+            <div class="hero-buttons">
+                <a href="#cta" class="btn btn-amber btn-lg">Розрахувати систему</a>
+                <a href="#how" class="btn btn-outline btn-lg">Як це працює</a>
+            </div>
+        </div>
+
+        <div class="hero-illus">
+            <svg class="hero-svg" viewBox="0 0 480 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="panelBlue" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#1b4d70"/>
+                        <stop offset="100%" stop-color="#0d2e45"/>
+                    </linearGradient>
+                    <linearGradient id="roofFill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#1e3d54"/>
+                        <stop offset="100%" stop-color="#152c3e"/>
+                    </linearGradient>
+                    <linearGradient id="wallFill" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#1a3246"/>
+                        <stop offset="100%" stop-color="#112535"/>
+                    </linearGradient>
+                    <radialGradient id="sunHalo" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#E8A020" stop-opacity="0.28"/>
+                        <stop offset="100%" stop-color="#E8A020" stop-opacity="0"/>
+                    </radialGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                </defs>
+
+                <!-- Sun halo -->
+                <ellipse cx="368" cy="72" rx="80" ry="70" fill="url(#sunHalo)"/>
+
+                <!-- Animated sun -->
+                <g transform="translate(368,72)">
+                    <circle r="26" fill="#E8A020" filter="url(#glow)"/>
+                    <circle r="20" fill="#f5c040"/>
+                    <g style="transform-origin:0px 0px; animation:rotate 20s linear infinite;">
+                        <line x1="0" y1="-36" x2="0" y2="-46" stroke="#E8A020" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+                        <line x1="0"  y1="36"  x2="0"  y2="46"  stroke="#E8A020" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+                        <line x1="-36" y1="0" x2="-46" y2="0"   stroke="#E8A020" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+                        <line x1="36"  y1="0" x2="46"  y2="0"   stroke="#E8A020" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+                        <line x1="-26" y1="-26" x2="-33" y2="-33" stroke="#E8A020" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+                        <line x1="26"  y1="26"  x2="33"  y2="33"  stroke="#E8A020" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+                        <line x1="26"  y1="-26" x2="33"  y2="-33" stroke="#E8A020" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+                        <line x1="-26" y1="26"  x2="-33" y2="33"  stroke="#E8A020" stroke-width="3" stroke-linecap="round" opacity="0.75"/>
+                    </g>
+                </g>
+
+                <!-- House wall -->
+                <rect x="88" y="220" width="304" height="140" rx="4" fill="url(#wallFill)"/>
+
+                <!-- Roof triangle -->
+                <polygon points="68,224 240,112 412,224" fill="url(#roofFill)" stroke="#263f54" stroke-width="1.5"/>
+
+                <!-- Chimney -->
+                <rect x="282" y="136" width="20" height="52" rx="2" fill="#172e41"/>
+                <rect x="278" y="132" width="28" height="8" rx="2" fill="#1e3d54"/>
+
+                <!-- Solar panels (4 panels on left roof slope, angled ~−32°) -->
+                <g transform="translate(155,174) rotate(-32)">
+                    <!-- Row 1: 2 panels side by side -->
+                    <rect x="-54" y="-18" width="50" height="34" rx="3" fill="url(#panelBlue)" stroke="#2BB5A0" stroke-width="0.7"/>
+                    <line x1="-54" y1="-6.7"  x2="-4"  y2="-6.7"  stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                    <line x1="-54" y1="4.7"   x2="-4"  y2="4.7"   stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                    <line x1="-37" y1="-18"   x2="-37" y2="16"    stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                    <line x1="-20" y1="-18"   x2="-20" y2="16"    stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+
+                    <rect x="4" y="-18" width="50" height="34" rx="3" fill="url(#panelBlue)" stroke="#2BB5A0" stroke-width="0.7"/>
+                    <line x1="4"  y1="-6.7"  x2="54" y2="-6.7"  stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                    <line x1="4"  y1="4.7"   x2="54" y2="4.7"   stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                    <line x1="21" y1="-18"   x2="21" y2="16"    stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                    <line x1="38" y1="-18"   x2="38" y2="16"    stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+
+                    <!-- Row 2 -->
+                    <rect x="-54" y="22" width="50" height="34" rx="3" fill="url(#panelBlue)" stroke="#2BB5A0" stroke-width="0.7"/>
+                    <line x1="-54" y1="33.3" x2="-4"  y2="33.3" stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                    <line x1="-54" y1="44.7" x2="-4"  y2="44.7" stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                    <line x1="-37" y1="22"   x2="-37" y2="56"   stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                    <line x1="-20" y1="22"   x2="-20" y2="56"   stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+
+                    <rect x="4" y="22" width="50" height="34" rx="3" fill="url(#panelBlue)" stroke="#2BB5A0" stroke-width="0.7"/>
+                    <line x1="4"  y1="33.3" x2="54" y2="33.3" stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                    <line x1="4"  y1="44.7" x2="54" y2="44.7" stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                    <line x1="21" y1="22"   x2="21" y2="56"   stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                    <line x1="38" y1="22"   x2="38" y2="56"   stroke="#2BB5A0" stroke-width="0.5" opacity="0.55"/>
+                </g>
+
+                <!-- Windows -->
+                <rect x="120" y="248" width="58" height="48" rx="3" fill="#0b1e2d" stroke="#263f54" stroke-width="1.2"/>
+                <line x1="149" y1="248" x2="149" y2="296" stroke="#263f54" stroke-width="1"/>
+                <line x1="120" y1="272" x2="178" y2="272" stroke="#263f54" stroke-width="1"/>
+                <!-- Warm light inside -->
+                <rect x="120" y="248" width="28" height="24" rx="2" fill="rgba(232,160,32,0.07)"/>
+
+                <rect x="302" y="248" width="58" height="48" rx="3" fill="#0b1e2d" stroke="#263f54" stroke-width="1.2"/>
+                <line x1="331" y1="248" x2="331" y2="296" stroke="#263f54" stroke-width="1"/>
+                <line x1="302" y1="272" x2="360" y2="272" stroke="#263f54" stroke-width="1"/>
+                <rect x="331" y="248" width="29" height="24" rx="2" fill="rgba(232,160,32,0.07)"/>
+
+                <!-- Door -->
+                <rect x="211" y="285" width="58" height="75" rx="3" fill="#091a27" stroke="#263f54" stroke-width="1.2"/>
+                <circle cx="260" cy="323" r="3.5" fill="#E8A020" opacity="0.6"/>
+
+                <!-- Ground -->
+                <rect x="0" y="358" width="480" height="22" rx="3" fill="rgba(10,26,40,0.65)"/>
+
+                <!-- Energy bolt indicator -->
+                <g opacity="0.82">
+                    <path d="M418 175 L408 194 H418 L406 218 L424 192 H414 Z" fill="#E8A020"/>
+                </g>
+
+                <!-- kWh badge -->
+                <g transform="translate(22,128)">
+                    <rect width="92" height="52" rx="9" fill="rgba(43,181,160,0.1)" stroke="rgba(43,181,160,0.28)" stroke-width="1"/>
+                    <text x="46" y="22" text-anchor="middle" font-family="DM Serif Display,serif" font-size="17" fill="#2BB5A0">12.4</text>
+                    <text x="46" y="38" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(245,240,232,0.45)">кВт·год сьогодні</text>
+                </g>
+
+                <!-- CO₂ saved badge -->
+                <g transform="translate(22,196)">
+                    <rect width="92" height="36" rx="8" fill="rgba(232,160,32,0.07)" stroke="rgba(232,160,32,0.22)" stroke-width="1"/>
+                    <text x="46" y="15" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(245,240,232,0.4)">CO₂ зекономлено</text>
+                    <text x="46" y="28" text-anchor="middle" font-family="DM Serif Display,serif" font-size="13" fill="#E8A020">5.2 кг</text>
+                </g>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<div class="stats">
+    <div class="stats-inner">
+        <div class="stat-item">
+            <div class="stat-num">500+</div>
+            <div class="stat-lbl">систем встановлено</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">12</div>
+            <div class="stat-lbl">років досвіду</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">98%</div>
+            <div class="stat-lbl">задоволених клієнтів</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">0 грн</div>
+            <div class="stat-lbl">рахунок за електрику</div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section class="section" id="services">
+    <div class="section-inner">
+        <span class="section-label">Наші послуги</span>
+        <h2 class="section-title">Повний спектр<br>сонячних рішень</h2>
+        <p class="section-sub">Від консультації до введення в експлуатацію — ми забезпечуємо повний цикл встановлення та підтримки.</p>
+
+        <div class="services-grid">
+            <div class="svc-card">
+                <div class="svc-icon">🏠</div>
+                <h3>Сонячні панелі для дому</h3>
+                <p>Системи від 3 до 30 кВт для приватних будинків. Встановлення на покрівлю будь-якого типу та орієнтації.</p>
+                <span class="svc-tag">Найпопулярніше</span>
+            </div>
+            <div class="svc-card">
+                <div class="svc-icon">🏭</div>
+                <h3>Комерційні об'єкти</h3>
+                <p>Промислові системи від 30 кВт для підприємств, складів, торгових центрів та офісних будівель.</p>
+            </div>
+            <div class="svc-card">
+                <div class="svc-icon">🔋</div>
+                <h3>Системи накопичення LiFePO4</h3>
+                <p>Літій-залізо-фосфатні акумулятори для автономного живлення в будь-який час доби — навіть вночі.</p>
+                <span class="svc-tag">Авторизований дилер</span>
+            </div>
+            <div class="svc-card">
+                <div class="svc-icon">⚡</div>
+                <h3>Підключення до мережі + зелений тариф</h3>
+                <p>Повний пакет документів, подача в Обленерго та реєстрація зеленого тарифу. Продавайте зайве в мережу.</p>
+            </div>
+            <div class="svc-card">
+                <div class="svc-icon">🔧</div>
+                <h3>Обслуговування систем</h3>
+                <p>Договір на технічне обслуговування строком до 10 років. Регулярна діагностика, чистка та оновлення ПЗ.</p>
+                <span class="svc-tag">Договір 10 років</span>
+            </div>
+            <div class="svc-card">
+                <div class="svc-icon">📊</div>
+                <h3>Енергетичний аудит</h3>
+                <p>Безкоштовний аналіз споживання та підбір оптимальної конфігурації сонячної системи під ваш бюджет.</p>
+                <span class="svc-tag">Безкоштовно</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="section how" id="how">
+    <div class="section-inner">
+        <span class="section-label">Процес роботи</span>
+        <h2 class="section-title">Від дзвінка до запуску —<br>просто і прозоро</h2>
+        <p class="section-sub">Чотири кроки, і ваша електростанція вже працює на вас.</p>
+
+        <div class="steps-wrap">
+            <div class="step">
+                <div class="step-num">01</div>
+                <div class="step-ico">📞</div>
+                <h3>Консультація та виїзд</h3>
+                <p>Безкоштовний виїзд спеціаліста для оцінки даху та вашого споживання. Разом рахуємо систему.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <div class="step-ico">📐</div>
+                <h3>Проект і кошторис</h3>
+                <p>Детальний технічний проект та фіксована ціна без прихованих доплат. Ви знаєте все наперед.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <div class="step-ico">⚙️</div>
+                <h3>Монтаж за 1–3 дні</h3>
+                <p>Сертифікована бригада встановлює систему без пошкоджень покрівлі та майна.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">04</div>
+                <div class="step-ico">📱</div>
+                <h3>Підключення і моніторинг</h3>
+                <p>Підключення до мережі та налаштування застосунку моніторингу в реальному часі на вашому смартфоні.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== WHY US ===== -->
+<section class="section" id="why">
+    <div class="section-inner">
+        <span class="section-label">Чому SolArc</span>
+        <h2 class="section-title">Переваги, які<br>говорять самі за себе</h2>
+        <p class="section-sub">Ми не просто продаємо панелі — будуємо довгострокові відносини та гарантуємо результат.</p>
+
+        <div class="why-grid">
+            <div class="benefits">
+                <div class="ben-card">
+                    <div class="ben-ico">🛡️</div>
+                    <div>
+                        <h4>25 років гарантії на панелі</h4>
+                        <p>Надаємо гарантію виробника та власну гарантію на монтажні роботи строком 5 років.</p>
+                    </div>
+                </div>
+                <div class="ben-card">
+                    <div class="ben-ico">📄</div>
+                    <div>
+                        <h4>Всі дозволи під ключ</h4>
+                        <p>Займаємось оформленням технічних умов, проекту та підключення — ви лише підписуєте.</p>
+                    </div>
+                </div>
+                <div class="ben-card">
+                    <div class="ben-ico">💰</div>
+                    <div>
+                        <h4>Окупність 4–7 років</h4>
+                        <p>Середній термін окупності системи при поточних тарифах. Після — чиста економія щороку.</p>
+                    </div>
+                </div>
+                <div class="ben-card">
+                    <div class="ben-ico">📱</div>
+                    <div>
+                        <h4>Моніторинг у телефоні</h4>
+                        <p>Відстежуйте вироблення, споживання та баланс у застосунку у режимі реального часу.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <div class="chart-hd">Виробництво vs Споживання</div>
+                <div class="chart-sd">Середньомісячні показники типового будинку, кВт·год</div>
+                <div class="chart-legend">
+                    <div class="leg">
+                        <div class="leg-dot" style="background:#E8A020;"></div>Виробництво
+                    </div>
+                    <div class="leg">
+                        <div class="leg-dot" style="background:#2BB5A0;"></div>Споживання
+                    </div>
+                </div>
+                <svg viewBox="0 0 380 210" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%">
+                    <defs>
+                        <linearGradient id="gProd" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#E8A020"/>
+                            <stop offset="100%" stop-color="#E8A020" stop-opacity="0.55"/>
+                        </linearGradient>
+                        <linearGradient id="gCons" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#2BB5A0"/>
+                            <stop offset="100%" stop-color="#2BB5A0" stop-opacity="0.55"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Axis -->
+                    <line x1="38" y1="10" x2="38" y2="168" stroke="rgba(245,240,232,0.1)" stroke-width="1"/>
+                    <line x1="38" y1="168" x2="372" y2="168" stroke="rgba(245,240,232,0.1)" stroke-width="1"/>
+
+                    <!-- Grid lines at 200, 400, 600 kWh -->
+                    <!-- scale: 158px = 600kWh → 1kWh = 0.2633px, 0 at y=168 -->
+                    <line x1="38" y1="115" x2="372" y2="115" stroke="rgba(245,240,232,0.05)" stroke-dasharray="4 4"/>
+                    <line x1="38" y1="63"  x2="372" y2="63"  stroke="rgba(245,240,232,0.05)" stroke-dasharray="4 4"/>
+                    <line x1="38" y1="10"  x2="372" y2="10"  stroke="rgba(245,240,232,0.05)" stroke-dasharray="4 4"/>
+
+                    <!-- Y labels -->
+                    <text x="30" y="171" text-anchor="end" font-size="9" fill="rgba(245,240,232,0.32)" font-family="DM Sans,sans-serif">0</text>
+                    <text x="30" y="118" text-anchor="end" font-size="9" fill="rgba(245,240,232,0.32)" font-family="DM Sans,sans-serif">200</text>
+                    <text x="30" y="66"  text-anchor="end" font-size="9" fill="rgba(245,240,232,0.32)" font-family="DM Sans,sans-serif">400</text>
+                    <text x="30" y="13"  text-anchor="end" font-size="9" fill="rgba(245,240,232,0.32)" font-family="DM Sans,sans-serif">600</text>
+
+                    <!-- Bars: groups at x=50,105,160,215,270,325 (prod), x=71,126,181,236,291,346 (cons) -->
+                    <!-- Width=18 per bar. Heights: prod*0.2633, cons*0.2633 from y=168 -->
+
+                    <!-- Бер: prod=280(74px), cons=180(47px) -->
+                    <rect x="50"  y="94"  width="18" height="74" rx="3" fill="url(#gProd)"/>
+                    <rect x="71"  y="121" width="18" height="47" rx="3" fill="url(#gCons)"/>
+
+                    <!-- Кві: prod=390(103px), cons=165(43px) -->
+                    <rect x="105" y="65"  width="18" height="103" rx="3" fill="url(#gProd)"/>
+                    <rect x="126" y="125" width="18" height="43" rx="3" fill="url(#gCons)"/>
+
+                    <!-- Тра: prod=510(134px), cons=155(41px) -->
+                    <rect x="160" y="34"  width="18" height="134" rx="3" fill="url(#gProd)"/>
+                    <rect x="181" y="127" width="18" height="41" rx="3" fill="url(#gCons)"/>
+
+                    <!-- Чер: prod=600(158px), cons=170(45px) -->
+                    <rect x="215" y="10"  width="18" height="158" rx="3" fill="url(#gProd)"/>
+                    <rect x="236" y="123" width="18" height="45" rx="3" fill="url(#gCons)"/>
+
+                    <!-- Лип: prod=575(151px), cons=185(49px) -->
+                    <rect x="270" y="17"  width="18" height="151" rx="3" fill="url(#gProd)"/>
+                    <rect x="291" y="119" width="18" height="49" rx="3" fill="url(#gCons)"/>
+
+                    <!-- Сер: prod=490(129px), cons=175(46px) -->
+                    <rect x="325" y="39"  width="18" height="129" rx="3" fill="url(#gProd)"/>
+                    <rect x="346" y="122" width="18" height="46" rx="3" fill="url(#gCons)"/>
+
+                    <!-- Month labels -->
+                    <text x="69"  y="185" text-anchor="middle" font-size="10" fill="rgba(245,240,232,0.42)" font-family="DM Sans,sans-serif">Бер</text>
+                    <text x="124" y="185" text-anchor="middle" font-size="10" fill="rgba(245,240,232,0.42)" font-family="DM Sans,sans-serif">Кві</text>
+                    <text x="179" y="185" text-anchor="middle" font-size="10" fill="rgba(245,240,232,0.42)" font-family="DM Sans,sans-serif">Тра</text>
+                    <text x="234" y="185" text-anchor="middle" font-size="10" fill="rgba(245,240,232,0.42)" font-family="DM Sans,sans-serif">Чер</text>
+                    <text x="289" y="185" text-anchor="middle" font-size="10" fill="rgba(245,240,232,0.42)" font-family="DM Sans,sans-serif">Лип</text>
+                    <text x="344" y="185" text-anchor="middle" font-size="10" fill="rgba(245,240,232,0.42)" font-family="DM Sans,sans-serif">Сер</text>
+
+                    <!-- Surplus callout above Jun bar -->
+                    <text x="224" y="6"  text-anchor="middle" font-size="8.5" fill="#E8A020" font-family="DM Sans,sans-serif" font-weight="700">+430 кВт·год</text>
+                    <text x="224" y="18" text-anchor="middle" font-size="7.5" fill="rgba(232,160,32,0.55)" font-family="DM Sans,sans-serif">надлишок в мережу</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section" id="testimonials" style="background:rgba(255,255,255,0.01);border-top:1px solid rgba(255,255,255,0.05);">
+    <div class="section-inner">
+        <span class="section-label">Відгуки клієнтів</span>
+        <h2 class="section-title">Вони вже обрали<br>незалежність</h2>
+        <p class="section-sub">Справжні відгуки наших клієнтів з різних міст півдня України.</p>
+
+        <div class="testi-grid">
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">Встановили систему 8 кВт на даху будинку в Одесі. Рахунок за електрику впав до нуля вже у перший повний місяць. Зайвий струм продаємо в мережу за зеленим тарифом. Рекомендую всім!</p>
+                <div class="testi-author">
+                    <div class="avatar">АК</div>
+                    <div>
+                        <div class="author-name">Андрій Коваль</div>
+                        <div class="author-city">Одеса</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">Взяли систему з акумулятором LiFePO4. Відключень електрики тепер просто не помічаємо — ні вдень, ні вночі. Для Миколаєва це просто рятівне рішення. Велике дякую команді SolArc!</p>
+                <div class="testi-author">
+                    <div class="avatar">ОМ</div>
+                    <div>
+                        <div class="author-name">Олена Михайленко</div>
+                        <div class="author-city">Миколаїв</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-quote">На нашому складі встановили систему 45 кВт. Щомісячна економія склала понад 18 000 грн. Окупимось за 4 роки! Монтаж зайняв всього 2 дні. Надзвичайно якісно і без зайвих клопотів.</p>
+                <div class="testi-author">
+                    <div class="avatar">СВ</div>
+                    <div>
+                        <div class="author-name">Сергій Власенко</div>
+                        <div class="author-city">Херсон</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section cta-sec" id="cta">
+    <div class="section-inner">
+        <span class="section-label">Починаємо?</span>
+        <h2 class="section-title">Безкоштовна консультація<br>та розрахунок системи</h2>
+        <p class="section-sub">Залиште номер — зателефонуємо протягом 15 хвилин та підберемо оптимальне рішення під ваш бюджет.</p>
+
+        <form class="cta-form" id="ctaForm">
+            <input
+                type="tel"
+                class="phone-inp"
+                id="phoneInput"
+                placeholder="+380 XX XXX XX XX"
+                autocomplete="tel"
+            />
+            <button type="submit" class="btn btn-amber btn-lg">Передзвоніть мені</button>
+        </form>
+        <div class="success-msg" id="successMsg">
+            ✅ Дякуємо! Наш менеджер зателефонує вам найближчим часом.
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-inner">
+        <a href="#" class="footer-logo">
+            <svg width="26" height="26" viewBox="0 0 36 36" fill="none">
+                <circle cx="18" cy="18" r="8" fill="#E8A020"/>
+                <g style="transform-origin:18px 18px; animation:rotate 20s linear infinite;">
+                    <rect x="16.5" y="1.5" width="3" height="6.5" rx="1.5" fill="#E8A020"/>
+                    <rect x="16.5" y="28"  width="3" height="6.5" rx="1.5" fill="#E8A020"/>
+                    <rect x="1.5"  y="16.5" width="6.5" height="3" rx="1.5" fill="#E8A020"/>
+                    <rect x="28"   y="16.5" width="6.5" height="3" rx="1.5" fill="#E8A020"/>
+                    <rect x="5.1"  y="5.7"  width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(-45 5.1 5.7)"/>
+                    <rect x="27.1" y="23.8" width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(-45 27.1 23.8)"/>
+                    <rect x="25.4" y="4.3"  width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(45 25.4 4.3)"/>
+                    <rect x="7.3"  y="25.8" width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(45 7.3 25.8)"/>
+                </g>
+            </svg>
+            SolArc
+        </a>
+
+        <nav class="footer-links">
+            <a href="#services">Послуги</a>
+            <a href="#how">Як це працює</a>
+            <a href="#why">Чому ми</a>
+            <a href="#testimonials">Відгуки</a>
+            <a href="#cta">Контакт</a>
+        </nav>
+
+        <div class="footer-copy">© 2024 SolArc. Всі права захищені. Сонячна енергетика для вашої незалежності.</div>
+    </div>
+</footer>
+
+<script>
+    /* --- CTA form --- */
+    document.getElementById('ctaForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const inp = document.getElementById('phoneInput');
+        const msg = document.getElementById('successMsg');
+        const digits = inp.value.replace(/\D/g, '');
+        if (digits.length < 10) {
+            inp.style.borderColor = '#e84040';
+            setTimeout(() => { inp.style.borderColor = ''; }, 1500);
+            return;
+        }
+        inp.classList.add('ok');
+        msg.style.display = 'block';
+        setTimeout(() => {
+            inp.classList.remove('ok');
+            inp.value = '';
+            msg.style.display = 'none';
+        }, 3000);
+    });
+
+    /* --- Smooth scroll with nav offset --- */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#') return;
+            const target = document.querySelector(href);
+            if (!target) return;
+            e.preventDefault();
+            const y = target.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        });
+    });
+
+    /* --- Nav opacity on scroll --- */
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('main-nav');
+        nav.style.background = window.scrollY > 60
+            ? 'rgba(13,31,45,0.97)'
+            : 'rgba(13,31,45,0.82)';
+    }, { passive: true });
+</script>
+</body>
+</html>
