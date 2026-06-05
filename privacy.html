@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Політика конфіденційності — SolArc</title>
+    <meta name="description" content="Політика конфіденційності SolArc. Як ми збираємо, використовуємо та захищаємо ваші персональні дані.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .terms-hero {
+            padding: 140px 5% 60px;
+            border-bottom: 1px solid rgba(232,160,32,0.14);
+        }
+        .terms-hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #F5F0E8;
+            margin-bottom: 0.6rem;
+        }
+        .terms-hero p {
+            font-size: 0.9rem;
+            color: rgba(245,240,232,0.45);
+        }
+        .terms-body {
+            padding: 64px 5% 96px;
+            background: #F7F4EE;
+        }
+        .terms-inner {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .terms-inner h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            color: #0D1F2D;
+            margin: 2.5rem 0 0.75rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid rgba(232,160,32,0.3);
+        }
+        .terms-inner h2:first-child { margin-top: 0; }
+        .terms-inner h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0D1F2D;
+            margin: 1.4rem 0 0.4rem;
+        }
+        .terms-inner p {
+            font-size: 0.95rem;
+            color: #3C5066;
+            line-height: 1.8;
+            margin-bottom: 0.9rem;
+        }
+        .terms-inner ul {
+            margin: 0.5rem 0 1rem 1.4rem;
+        }
+        .terms-inner ul li {
+            font-size: 0.95rem;
+            color: #3C5066;
+            line-height: 1.8;
+            margin-bottom: 0.35rem;
+        }
+        .terms-inner strong { color: #0D1F2D; }
+        .terms-inner a { color: #C4851A; text-decoration: underline; }
+        .terms-back {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.88rem; font-weight: 600; color: #E8A020;
+            margin-bottom: 2.5rem;
+            transition: gap 0.2s;
+            text-decoration: none;
+        }
+        .terms-back:hover { gap: 0.8rem; }
+        .notice-box {
+            background: rgba(232,160,32,0.1);
+            border: 1px solid rgba(232,160,32,0.3);
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .notice-box p { margin: 0; color: #7a5010; font-size: 0.9rem; }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 1.5rem;
+            font-size: 0.88rem;
+        }
+        .data-table th {
+            background: #0D1F2D;
+            color: #F5F0E8;
+            font-weight: 600;
+            padding: 0.7rem 1rem;
+            text-align: left;
+        }
+        .data-table td {
+            padding: 0.65rem 1rem;
+            color: #3C5066;
+            border-bottom: 1px solid #E2DDD5;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:nth-child(even) td { background: rgba(232,160,32,0.04); }
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0 1.5rem;
+        }
+        .right-card {
+            background: #FFFFFF;
+            border: 1px solid #E2DDD5;
+            border-left: 3px solid #E8A020;
+            border-radius: 0 10px 10px 0;
+            padding: 1rem 1.2rem;
+        }
+        .right-card strong {
+            display: block;
+            font-size: 0.88rem;
+            margin-bottom: 0.25rem;
+        }
+        .right-card span {
+            font-size: 0.82rem;
+            color: #4A6070;
+            line-height: 1.55;
+        }
+        @media (max-width: 600px) {
+            .rights-grid { grid-template-columns: 1fr; }
+            .data-table { font-size: 0.8rem; }
+            .data-table th, .data-table td { padding: 0.5rem 0.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="main-nav">
+    <a href="index.html" class="nav-logo">
+        <svg class="sun-icon" viewBox="0 0 36 36" fill="none">
+            <circle cx="18" cy="18" r="8" fill="#E8A020"/>
+            <g class="sun-rays">
+                <rect x="16.5" y="1.5" width="3" height="6.5" rx="1.5" fill="#E8A020"/>
+                <rect x="16.5" y="28" width="3" height="6.5" rx="1.5" fill="#E8A020"/>
+                <rect x="1.5" y="16.5" width="6.5" height="3" rx="1.5" fill="#E8A020"/>
+                <rect x="28" y="16.5" width="6.5" height="3" rx="1.5" fill="#E8A020"/>
+                <rect x="5.1" y="5.7" width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(-45 5.1 5.7)"/>
+                <rect x="27.1" y="23.8" width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(-45 27.1 23.8)"/>
+                <rect x="25.4" y="4.3" width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(45 25.4 4.3)"/>
+                <rect x="7.3" y="25.8" width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(45 7.3 25.8)"/>
+            </g>
+        </svg>
+        SolArc
+    </a>
+    <ul class="nav-links">
+        <li><a href="index.html#services">Послуги</a></li>
+        <li><a href="index.html#how">Як це працює</a></li>
+        <li><a href="index.html#why">Чому ми</a></li>
+        <li><a href="index.html#testimonials">Відгуки</a></li>
+    </ul>
+    <a href="index.html#cta" class="btn btn-amber nav-cta">Безкоштовна консультація</a>
+</nav>
+
+<!-- HERO -->
+<div class="terms-hero">
+    <h1>Політика конфіденційності</h1>
+    <p>Редакція від 05 червня 2025 року</p>
+</div>
+
+<!-- BODY -->
+<div class="terms-body">
+    <div class="terms-inner">
+
+        <a href="index.html" class="terms-back">← Повернутись на головну</a>
+
+        <div class="notice-box">
+            <p>Ця Політика пояснює, які персональні дані ми збираємо, навіщо, як зберігаємо та захищаємо їх. Будь ласка, прочитайте уважно перед використанням Сайту.</p>
+        </div>
+
+        <h2>1. Хто є Оператором даних</h2>
+        <p><strong>SolArc</strong> (далі — «Компанія», «ми», «Оператор») є оператором персональних даних у розумінні Закону України «Про захист персональних даних» від 01.06.2010 № 2297-VI.</p>
+        <p>Контактні дані Оператора:</p>
+        <ul>
+            <li><strong>Email:</strong> info@solarc.ua</li>
+            <li><strong>Телефон:</strong> +380 XX XXX XX XX</li>
+            <li><strong>Адреса:</strong> Україна, [місто, адреса]</li>
+        </ul>
+
+        <h2>2. Які дані ми збираємо</h2>
+        <p>Ми збираємо лише ті дані, які ви добровільно надаєте нам через форму зворотного зв'язку на Сайті, а також технічні дані, що автоматично формуються під час відвідування Сайту.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Категорія даних</th>
+                    <th>Конкретні дані</th>
+                    <th>Джерело</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Контактні дані</strong></td>
+                    <td>Номер телефону</td>
+                    <td>Форма на Сайті (добровільно)</td>
+                </tr>
+                <tr>
+                    <td><strong>Технічні дані</strong></td>
+                    <td>IP-адреса, тип браузера, ОС, сторінки відвідування, час перебування</td>
+                    <td>Автоматично (логи сервера)</td>
+                </tr>
+                <tr>
+                    <td><strong>Cookie-дані</strong></td>
+                    <td>Технічні cookie для роботи Сайту</td>
+                    <td>Автоматично (браузер)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Ми <strong>не збираємо</strong> особливі категорії даних: інформацію про стан здоров'я, расове або етнічне походження, політичні погляди, біометричні дані.</p>
+
+        <h2>3. Цілі та підстави обробки</h2>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Ціль обробки</th>
+                    <th>Дані</th>
+                    <th>Правова підстава</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Зворотній дзвінок та консультація</td>
+                    <td>Номер телефону</td>
+                    <td>Згода суб'єкта (ст. 11 Закону)</td>
+                </tr>
+                <tr>
+                    <td>Виконання договору про надання послуг</td>
+                    <td>Контактні дані</td>
+                    <td>Необхідність виконання договору</td>
+                </tr>
+                <tr>
+                    <td>Забезпечення безпеки та стабільності Сайту</td>
+                    <td>Технічні дані</td>
+                    <td>Законний інтерес Оператора</td>
+                </tr>
+                <tr>
+                    <td>Ведення статистики відвідуваності</td>
+                    <td>Технічні дані (анонімізовані)</td>
+                    <td>Законний інтерес Оператора</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>4. Строки зберігання даних</h2>
+        <p>Ми зберігаємо персональні дані лише стільки, скільки необхідно для досягнення мети їх обробки:</p>
+        <ul>
+            <li><strong>Номер телефону</strong> — до 3 (трьох) років з дати отримання або до відкликання згоди;</li>
+            <li><strong>Дані клієнтів за договором</strong> — протягом строку дії договору + 3 роки після його закінчення (відповідно до вимог бухгалтерського та податкового законодавства України);</li>
+            <li><strong>Технічні логи</strong> — до 12 місяців;</li>
+            <li><strong>Cookie</strong> — відповідно до типу cookie (сесійні видаляються після закриття браузера).</li>
+        </ul>
+
+        <h2>5. Передача даних третім особам</h2>
+        <p>Ми <strong>не продаємо</strong> та <strong>не передаємо</strong> ваші персональні дані третім особам у комерційних цілях.</p>
+        <p>Передача можлива лише у таких випадках:</p>
+        <ul>
+            <li>за вашою явною згодою;</li>
+            <li>на вимогу уповноважених державних органів відповідно до законодавства України;</li>
+            <li>технічним підрядникам, що забезпечують роботу Сайту (хостинг), — виключно в обсязі, необхідному для виконання їхніх функцій, та на підставі угоди про конфіденційність.</li>
+        </ul>
+        <p>Сайт розміщено на платформі <strong>GitHub Pages</strong> (GitHub, Inc., США). GitHub обробляє технічні дані відповідно до власної <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">Політики конфіденційності</a>.</p>
+
+        <h2>6. Ваші права як суб'єкта даних</h2>
+        <p>Відповідно до статті 8 Закону України «Про захист персональних даних» ви маєте право:</p>
+
+        <div class="rights-grid">
+            <div class="right-card">
+                <strong>Доступ</strong>
+                <span>Знати, які ваші дані ми обробляємо, та отримати їх копію</span>
+            </div>
+            <div class="right-card">
+                <strong>Виправлення</strong>
+                <span>Вимагати оновлення або виправлення неточних даних</span>
+            </div>
+            <div class="right-card">
+                <strong>Видалення</strong>
+                <span>Вимагати видалення ваших даних («право на забуття»)</span>
+            </div>
+            <div class="right-card">
+                <strong>Відкликання згоди</strong>
+                <span>Відкликати згоду на обробку в будь-який момент</span>
+            </div>
+            <div class="right-card">
+                <strong>Заперечення</strong>
+                <span>Заперечувати проти обробки на підставі законного інтересу</span>
+            </div>
+            <div class="right-card">
+                <strong>Скарга</strong>
+                <span>Звернутися зі скаргою до Уповноваженого ВРУ з прав людини</span>
+            </div>
+        </div>
+
+        <p>Для реалізації будь-якого з прав надішліть запит на <strong>info@solarc.ua</strong>. Ми відповімо протягом <strong>30 календарних днів</strong>.</p>
+
+        <h2>7. Cookie-файли</h2>
+        <p>Сайт використовує лише <strong>технічні (обов'язкові) cookie</strong>, без яких коректна робота Сайту неможлива. Ми не використовуємо рекламні, аналітичні чи маркетингові cookie від третіх сторін.</p>
+        <p>Ви можете відключити cookie у налаштуваннях вашого браузера, однак це може вплинути на функціональність окремих елементів Сайту.</p>
+
+        <h2>8. Захист даних</h2>
+        <p>Ми вживаємо технічних та організаційних заходів для захисту ваших персональних даних від несанкціонованого доступу, втрати або знищення:</p>
+        <ul>
+            <li>передача даних здійснюється виключно через захищений протокол <strong>HTTPS</strong>;</li>
+            <li>доступ до персональних даних мають лише уповноважені співробітники Компанії;</li>
+            <li>співробітники підписують зобов'язання про нерозголошення конфіденційної інформації.</li>
+        </ul>
+
+        <h2>9. Діти</h2>
+        <p>Сайт не призначений для осіб, молодших 18 років. Ми свідомо не збираємо дані дітей. Якщо ви вважаєте, що дитина надала нам свої дані без відома батьків — зв'яжіться з нами для їх видалення.</p>
+
+        <h2>10. Зміни до Політики</h2>
+        <p>Ми можемо оновлювати цю Політику. Про суттєві зміни ми повідомимо шляхом розміщення нової редакції на Сайті із зазначенням дати оновлення. Рекомендуємо час від часу переглядати цю сторінку.</p>
+
+        <h2>11. Контакти та скарги</h2>
+        <p>З питань, пов'язаних із обробкою персональних даних, звертайтесь:</p>
+        <ul>
+            <li><strong>Email:</strong> info@solarc.ua</li>
+            <li><strong>Телефон:</strong> +380 XX XXX XX XX</li>
+        </ul>
+        <p>Якщо ви вважаєте, що ваші права порушено, ви маєте право звернутися зі скаргою до <strong>Уповноваженого Верховної Ради України з прав людини</strong> (омбудсмена) — <a href="https://www.ombudsman.gov.ua" target="_blank" rel="noopener">ombudsman.gov.ua</a>.</p>
+
+        <a href="index.html" class="terms-back" style="margin-top:2rem; display:inline-flex;">← Повернутись на головну</a>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <a href="index.html" class="footer-logo">
+            <svg width="26" height="26" viewBox="0 0 36 36" fill="none">
+                <circle cx="18" cy="18" r="8" fill="#E8A020"/>
+                <g style="transform-origin:18px 18px; animation:rotate 20s linear infinite;">
+                    <rect x="16.5" y="1.5" width="3" height="6.5" rx="1.5" fill="#E8A020"/>
+                    <rect x="16.5" y="28"  width="3" height="6.5" rx="1.5" fill="#E8A020"/>
+                    <rect x="1.5"  y="16.5" width="6.5" height="3" rx="1.5" fill="#E8A020"/>
+                    <rect x="28"   y="16.5" width="6.5" height="3" rx="1.5" fill="#E8A020"/>
+                    <rect x="5.1"  y="5.7"  width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(-45 5.1 5.7)"/>
+                    <rect x="27.1" y="23.8" width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(-45 27.1 23.8)"/>
+                    <rect x="25.4" y="4.3"  width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(45 25.4 4.3)"/>
+                    <rect x="7.3"  y="25.8" width="3" height="6" rx="1.5" fill="#E8A020" transform="rotate(45 7.3 25.8)"/>
+                </g>
+            </svg>
+            SolArc
+        </a>
+        <nav class="footer-links">
+            <a href="index.html#services">Послуги</a>
+            <a href="index.html#how">Як це працює</a>
+            <a href="index.html#why">Чому ми</a>
+            <a href="index.html#testimonials">Відгуки</a>
+            <a href="terms.html">Правила користування</a>
+            <a href="privacy.html">Політика конфіденційності</a>
+        </nav>
+        <div class="footer-copy">© 2024 SolArc. Всі права захищені. Сонячна енергетика для вашої незалежності.</div>
+    </div>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('main-nav');
+        nav.style.background = window.scrollY > 60
+            ? 'rgba(13,31,45,0.97)'
+            : 'rgba(13,31,45,0.88)';
+    }, { passive: true });
+</script>
+</body>
+</html>
