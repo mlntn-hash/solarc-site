@@ -245,16 +245,16 @@ img { max-width: 100%; }
 
 /* ===== HOW IT WORKS ===== */
 .how {
-    background: rgba(255,255,255,0.025);
-    border-top: 1px solid rgba(255,255,255,0.06);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: #0e2538;
+    border-top: 1px solid rgba(232,160,32,0.14);
+    border-bottom: 1px solid rgba(232,160,32,0.14);
     position: relative;
     overflow: hidden;
 }
 .how::before {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,160,32,0.06) 0%, transparent 60%);
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232,160,32,0.08) 0%, transparent 60%);
     pointer-events: none;
 }
 .steps-wrap {
@@ -266,26 +266,27 @@ img { max-width: 100%; }
 }
 .step:not(:last-child)::after {
     content: '→'; position: absolute;
-    right: -0.6rem; top: 4.2rem;
-    font-size: 1.6rem; color: rgba(232,160,32,0.42); z-index: 1;
+    right: -0.6rem; top: 5.8rem;
+    font-size: 1.4rem; color: rgba(232,160,32,0.5); z-index: 1;
 }
 .step-num {
     font-family: 'DM Serif Display', serif; font-size: 5.5rem;
-    color: rgba(232,160,32,0.08); line-height: 1;
+    color: rgba(232,160,32,0.13); line-height: 1;
     position: absolute; top: 0.5rem; left: 50%;
     transform: translateX(-50%);
     pointer-events: none; user-select: none; white-space: nowrap;
 }
 .step-ico {
-    width: 64px; height: 64px; border-radius: 50%;
-    background: rgba(232,160,32,0.11);
-    border: 1px solid rgba(232,160,32,0.28);
+    width: 68px; height: 68px; border-radius: 50%;
+    background: linear-gradient(135deg, rgba(232,160,32,0.22) 0%, rgba(232,160,32,0.1) 100%);
+    border: 1.5px solid rgba(232,160,32,0.55);
+    box-shadow: 0 0 18px rgba(232,160,32,0.18), inset 0 1px 0 rgba(255,255,255,0.08);
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.6rem; margin: 4rem auto 1.3rem;
+    font-size: 1.7rem; margin: 4rem auto 1.3rem;
     position: relative; z-index: 1;
 }
-.step h3 { font-size: 1rem; color: #F5F0E8; margin-bottom: 0.45rem; position: relative; z-index: 1; }
-.step p { font-size: 0.82rem; color: rgba(245,240,232,0.54); line-height: 1.6; position: relative; z-index: 1; }
+.step h3 { font-size: 1rem; color: #F5F0E8; margin-bottom: 0.45rem; position: relative; z-index: 1; font-weight: 600; }
+.step p { font-size: 0.82rem; color: rgba(245,240,232,0.62); line-height: 1.6; position: relative; z-index: 1; }
 
 /* ===== WHY US ===== */
 .why-grid {
