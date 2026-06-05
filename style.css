@@ -238,11 +238,12 @@ img { max-width: 100%; }
 .section--light .chart-box {
     background: #FFFFFF;
     border-color: #E2DDD5;
-    box-shadow: 0 2px 16px rgba(13,31,45,0.07);
+    box-shadow: 0 4px 24px rgba(13,31,45,0.1);
 }
 .section--light .chart-hd { color: #0D1F2D; }
 .section--light .chart-sd { color: #6B7F8E; }
 .section--light .leg       { color: #4A6070; }
+.section--light .chart-box svg text { fill: rgba(13,31,45,0.45); }
 
 .section--light .why-grid .section-title { color: #0D1F2D; }
 
@@ -312,7 +313,7 @@ img { max-width: 100%; }
 }
 .step-num {
     font-family: 'DM Serif Display', serif; font-size: 5.5rem;
-    color: rgba(232,160,32,0.13); line-height: 1;
+    color: rgba(255,255,255,0.08); line-height: 1;
     position: absolute; top: 0.5rem; left: 50%;
     transform: translateX(-50%);
     pointer-events: none; user-select: none; white-space: nowrap;
