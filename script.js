@@ -34,7 +34,20 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 /* Nav opacity on scroll */
 window.addEventListener('scroll', () => {
     const nav = document.getElementById('main-nav');
-    nav.style.background = window.scrollY > 60
-        ? 'rgba(13,31,45,0.97)'
-        : 'rgba(13,31,45,0.88)';
+    if (window.scrollY > 60) {
+        nav.style.background = 'rgba(255, 255, 255, 0.96)';
+        nav.style.borderBottom = '1px solid #E2DDD5';
+        nav.style.boxShadow = '0 2px 16px rgba(13, 31, 45, 0.08)';
+        nav.style.backdropFilter = 'blur(18px)';
+        nav.style.webkitBackdropFilter = 'blur(18px)';
+    } else {
+        nav.style.background = 'rgba(247, 243, 235, 0)';
+        nav.style.borderBottom = '1px solid transparent';
+        nav.style.boxShadow = 'none';
+        nav.style.backdropFilter = 'blur(0px)';
+        nav.style.webkitBackdropFilter = 'blur(0px)';
+    }
 }, { passive: true });
+
+/* Trigger on load to set initial state */
+window.dispatchEvent(new Event('scroll'));
